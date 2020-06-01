@@ -1,0 +1,1097 @@
+Day 1:
+JSX
+Demo1 :
+index.js
+ReactDOM.render(  
+  <h1>React JS</h1> ,document.getElementById('root');
+);
+
+demo2:
+
+index.js
+const element = <div>Hello World</div>;
+ReactDOM.render(
+element, document.getElementById('root')
+);
+
+The index.js file is the root of your project where React components will be rendered.
+Let me explain how the code works:
+Line 1: React package is imported to handle JSX processing
+Line 2: ReactDOM package is imported to render React components.
+Line 4: Call to render function
+<h1>Hello World</h1>: a JSX element
+document.getElementById('root'): HTML container
+
+The HTML container is located in public/index.html file. 
+On line 28, you should see <div id="root"></div>. 
+This is known as the root DOM because everything inside 
+it will be managed by the React DOM
+---------------------------------------------------
+Demo3
+const element = <span>Hello,</span> <span>Jane</span;
+The above code won’t work. You’ll get a syntax error telling you must enclose
+adjacent JSX elements in an enclosing tag. Basically, 
+this is how you should enclose your elements:
+
+const element = <div>
+    <span>Hello, </span>
+    <span>Jane</span>
+  </div>;
+
+--------------------------------------------------
+Demo4
+
+const name = "Jane";
+const element = <p>Hello, {name}</p>
+------------------------------
+Demo5
+
+const user = {
+  firstName: "Jane",
+  lastName: "Doe"
+}
+const element = <p>Hello, {user.firstName} {user.lastName}</p>
+
+
+The above example was a simplistic way of showing you how ReactDOM.render() works. 
+Generally, we encapsulate all project logic within React components,
+ which are then passed via the ReactDOM.render function.
+
+
+Demo 6:
+Add a new file App1.js
+
+import React,{Component} from 'react';
+class App1 extends Component {
+    render(){
+      return (
+        <div>
+          Hello World Again!
+        </div>
+      )
+    }  
+  }  
+  export default App1;
+
+index.js
+ReactDOM.render(
+<App1/>,document.getElementById('root')
+);
+
+Demo 7:
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+        <div>
+      <h1>Welcome to React!!!</h1>
+    </div>
+  );
+}
+
+export default App;
+
+Start up page is index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render( 
+  <App/>,document.getElementById('root')
+);
+
+--------------------------
+Styling JSX Elements
+There are two ways of styling JSX elements:
+
+JSX inline styling
+External Stylesheets
+Demo 7
+import React,{Component} from 'react';
+class App1 extends Component {
+    render() {
+        const a = {
+          color: '#ff0000',
+          textDecoration: 'underline',
+          color:'red'
+        }
+   
+      return (
+        <div>
+         <h1 style={a}> Hello World Again!</h1>
+        </div>
+      )
+    }  
+  }  
+  export default App1;
+
+index.js
+ReactDOM.render(
+<App1/>,document.getElementById('root')
+);
+
+------------------------------------------------
+Demo 8
+App1.css
+h1 {
+    font-size: 4rem;
+    border-color: brown;
+    border-style: dashed;
+  }
+
+import React,{Component} from 'react';
+import './App1.css';
+class App1 extends Component {
+    render() {
+        const a = {
+          color: '#ff0000',
+          textDecoration: 'underline',
+          color:'red'
+        }
+   
+      return (
+        <div>
+         <h1 style={a}> Hello World Again!</h1>
+         <h1>External Style Sheet Demo..</h1>
+        </div>
+      )
+    }  
+  }  
+  export default App1;
+
+index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import App1 from './App1'
+import * as serviceWorker from './serviceWorker';
+const element =<span>Hello,</span>
+ReactDOM.render(
+ <App1/>,document.getElementById('root')
+);
+
+==============================================================================
+Day 2:Component
+
+React Components
+Components are independent and reusable bits of code. They serve the same purpose as JavaScript functions, but work in isolation and returns HTML via a render function.
+
+Components come in two types, Class components and Function components
+
+Functionl Component
+Demo 1:
+
+import logo from './logo.svg';
+import './App.css';
+import React from 'react'
+function App() {
+  return (
+    <div>
+   
+    <h1>Welcome to React functin component,{prop1.a}</h1>
+  </div>
+  );
+}
+
+export default App;
+
+
+index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+import * as serviceWorker from './serviceWorker';
+const element =<span>Hello,</span>
+ReactDOM.render(
+ <App/>,document.getElementById('root')
+);
+
+
+Demo2
+
+import logo from './logo.svg';
+import './App.css';
+import React from 'react'
+function App(props) {
+  return (
+    <div>
+   
+    <h1>Welcome to React functin component,{props.name}</h1>
+  </div>
+  );
+}
+
+export default App;
+
+
+index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+import * as serviceWorker from './serviceWorker';
+const element =<span>Hello,</span>
+ReactDOM.render(
+ <App/>,document.getElementById('root')
+);
+
+Demo 3
+import logo from './logo.svg';
+import './App.css';
+import React from 'react'
+function App(props) {
+  return (
+    <div>
+   
+    <h1>Welcome to React functin component,{props.e.name} {props.e.tech}</h1>
+  </div>
+  );
+}
+
+export default App;
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+//const element= <h1>welcome to react element!!!!</h1>
+const emp={name:'Manisha',tech:'RecatJS'};
+const age=30;
+ReactDOM.render(
+  <App e={emp}/>,document.getElementById('root')
+);
+
+
+Demo 4
+import logo from './logo.svg';
+import './App.css';
+import React from 'react'
+function App(props) {
+  return (
+    <div>
+   
+    <h1>Welcome to React functin component,{props.children}</h1>
+  </div>
+  );
+}
+
+export default App;
+
+
+index.js
+
+ReactDOM.render(
+  //<Main/>,document.getElementById('root')
+  <App>Manisha</App>,document.getElementById('root')
+);
+
+
+Demo 5:
+-----------Users------Class component
+import React ,{ Component } from "react"
+import User from './User'
+
+class Users extends Component
+{
+render()
+{
+return(
+    <div>
+       <User>Manisha</User>
+       <User>Swati</User>
+       <User>Ankita</User>
+
+    </div>
+);
+
+}
+}
+export default Users
+
+----------user--function component
+
+import React from 'react'
+
+function User(props)
+{
+    return(
+        <div>{props.children}</div>
+    );
+
+}
+export default User;
+
+-------------Main.js
+import React,{Component} from 'react'
+import Users from './Users/Users'
+class Main extends Component
+{
+    render()
+    {
+        return(
+            <div className="Main">
+            <Users/>
+            </div>
+        )
+    }
+}
+export default Main
+--------------index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import Main from './Main'
+ import App from './App';
+
+// import Test from './Sample'
+// //const element= <h1>welcome to react element!!!!</h1>
+// const emp={name:'Manisha',tech:'RecatJS'};
+// const age=30;
+ReactDOM.render(
+  <Main/>,document.getElementById('root')
+  //<App>Manisha</App>,document.getElementById('root')
+);
+
+//serviceWorker.unregister();
+
+Users is the parent component
+parent passes the properties to child component.
+for state mangement ,container component (top level component) use classcomponent .
+
+===================================================
+
+Stateless vs Stateful Components
+In React, we generally deal with two types of data: props and state. Props are read-only and are set by a 
+parent component.
+State is defined within a component and can change during the lifecycle of a component. 
+Basically, stateless components (also known as dumb components) use props to store data, 
+while stateful components (also known as smart components) use state. 
+
+
+Components receive data from outside with props, whereas they can create and manage their own 
+data with state. Props are used to pass data, whereas state is for managing data. 
+Data from props is read-only, 
+and cannot be modified by a component that is receiving it from outside
+
+Componenet name shd start with capital to distinguish from html tag.
+Ther should be  onl 1 parent tag
+<div>
+</div>
+<div></div>
+
+===================================
+state and props makes recdynamic
+state does it from inside and props does it from outside
+
+
+state is defined inside a component that is extending the Component
+not fun component which are stateless component.
+
+
+login -->display component
+
+class Employee
+{
+int empno,
+Str en}
+Emp e=
+e.empno=100
+
+e.empno=200;
+
+Users loc , name-->User  props
+
+index  props -->Users   state -->User
+
+Day 3:
+How Virtual DOM helps React?
+Each time we change something in our JSX file, all the objects that are there in the virtual DOM gets updated.
+Though it may sound that it is ineffective but the cost is not much significant as updating the virtual DOM 
+doesn’t take much time.
+ React maintains two Virtual DOM at each time, one contains the updated Virtual DOM and one which is 
+just the pre-update version of this updated Virtual DOM.
+ Now it compares the pre-update version with the updated Virtual DOM and figures out what exactly has 
+changed in the DOM. 
+This process is known as ‘diffing’. 
+Once React finds out what exactly has changed then it updated those objects only, on real DOM. 
+This significantly improves the performance and is the main reason why Virtual DOM is much loved by developers all around.
+
+this.setState is asynchronous. It means that the time console logged could not be matched with the time state got updated If you want to see exact value after state got changed, you have to do as below
+setState() does not immediately mutate this.state but creates a pending state transition. Accessing this.state after calling this method can potentially return the existing value. There is no guarantee of synchronous operation of calls to setState and calls may be batched for performance gains.
+
+
+Demo 1: Asynchronous
+import React from 'react';
+
+class App extends React.Component {
+   constructor(props) {
+      super(props);
+      this.change = this.change.bind(this);
+      this.newChange = this.newChange.bind(this);
+   }
+      state = {
+    
+         empid:101,
+         ename:"Manisha"
+      }
+   
+   change(props)
+   {
+       console.log('inside show')
+       this.setState(
+           {
+          empid:103,
+          ename:this.props.ename
+           }/*, function () {
+            console.log(this.state);}
+*/
+       );
+       
+       console.log(this.state)
+   }
+   newChange()
+   {
+       console.log('inside show')
+     
+       this.setState(
+           {
+          empid:"mm5036641",
+          ename:this.props.ename+"Mane"
+           }
+       );
+       console.log(this.state)
+   }
+   render() {
+      return (
+         <div>
+            <button onClick={this.change}>Click1</button>
+            <br/>
+            <button onClick={this.newChange}>Click2</button>
+            <br/>
+            <h1>{this.state.empid}</h1>
+            <h2>{this.state.ename}</h2>
+         </div>
+      );
+   }
+}
+export default App;
+
+import React from 'react';
+import App from './App'
+function Test()
+{
+return(
+    <div>
+        <App eid="102" ename="Kiran"/>
+     
+        </div>
+)
+}
+export default Test;
+
+
+index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './Stateful/App'
+import * as serviceWorker from './serviceWorker';
+import Test from './Stateful/Test';
+
+ReactDOM.render(
+<Test/>,document.getElementById('root')
+)
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+
+---------------------------
+Demo 2: Synchronous:
+
+import React from 'react';
+
+class App extends React.Component {
+   constructor(props) {
+      super(props);
+      this.change = this.change.bind(this);
+      this.newChange = this.newChange.bind(this);
+   }
+      state = {
+    
+         empid:101,
+         ename:"Manisha"
+      }
+   //Synchronous
+   change(props)
+   {
+       console.log('inside show')
+       this.setState(
+           {
+          empid:103,
+          ename:this.props.ename
+           }, function () {
+            console.log(this.state);}
+
+       );       
+       //console.log(this.state)
+   }
+   //Asynchronous
+   newChange()
+   {
+       console.log('inside show')
+     
+       this.setState(
+           {
+          empid:"mm5036641",
+          ename:this.props.ename+"Mane"
+           }
+       );
+       console.log(this.state)
+   }
+   render() {
+      return (
+         <div>
+            <button onClick={this.change}>Click1</button>
+            <br/>
+            <button onClick={this.newChange}>Click2</button>
+            <br/>
+            <h1>{this.state.empid}</h1>
+            <h2>{this.state.ename}</h2>
+         </div>
+      );
+   }
+}
+export default App;
+
+
+import React from 'react';
+import App from './App'
+function Test()
+{
+return(
+    <div>
+        <App eid="102" ename="Kiran"/>
+     
+        </div>
+)
+}
+export default Test;
+
+
+index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './Stateful/App'
+import * as serviceWorker from './serviceWorker';
+import Test from './Stateful/Test';
+
+index.js
+ReactDOM.render(
+<Test/>,document.getElementById('root')
+)
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+
+LifeCycle Hooks:
+init --first time 
+re-render-when state or props change
+destroy
+
+constructor-->Init --run only 1 time
+
+https://www.youtube.com/watch?v=kVyrzn29QPk
+
+event 
+Initila rendering 
+1. constructor --init
+2.componentWillMount--will run only once when the component is first  rendered.
+render has not happened , we have initila state and props, to change STate 
+3.render -- suggestion not to setState,render will build entire component cycle
+4.componetDidMount--after -- also rund only once is basically used to do ajax call
+
+Component Re render when we change state and props com shd re-render
+componentReceiveProps
+
+
+gouri-sanjay.tele@atos.net;
+swapnil.sonawane@atos.net;
+Gaurav.gupta@atos.net 
+satish.2.joshi@atos.net
+
+Event Handling
+Adding Events
+React events are written in camelCase syntax:
+onClick instead of onclick.
+React event handlers are written inside curly braces:
+onClick={shoot}  instead of onClick="shoot()".
+
+import React from 'react'
+
+class EveApp extends React.Component {
+    constructor(props) {
+       super(props);
+       
+       this.state = {
+          name:"Manisha"
+       }  
+       console.log('constructor')  
+       this.show=this.show.bind(this);   
+    };
+    show()
+    {
+        this.setState(
+            {
+              name:this.props.name
+            }
+        )
+    }        
+   show1(newName)
+   {
+this.setState(
+   {
+      name:newName
+   }
+)
+   }
+
+   show1(newName)
+   {
+this.setState(
+   {
+      name:newName
+   }
+)
+   }
+    render() {
+        return (
+           <div>
+              <button onClick = {this.show}>Show 1</button>
+              <br/>
+              <button onClick = {()=>this.show1('SAMPLE')}>Show 2</button>
+              <br/>
+              <button onClick = {this.show1.bind(this,"Goa")}>Show 3</button>
+              <br/>
+              <h1>{this.state.name}</h1>
+           </div>
+        );
+     }
+    }
+    export default EveApp;
+
+
+https://www.w3schools.com/react/react_events.asp
+
+
+Day 4:
+List And Keys
+Forms
+Routing
+
+https://reactjs.org/docs/lists-and-keys.html
+
+List :
+Given the code below, we use the map() function to take an array of numbers and double their values. We assign the new array returned by map() to the variable doubled and log it:
+
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((number) => number * 2);
+console.log(doubled);
+-----------------
+In reactJS
+This code displays a bullet list of numbers between 1 and 5.
+
+
+const numbers=['one' ,'two','three' ,4 ,5 ];
+const listitems= numbers.map(  
+(numbers)=><li>{numbers}</li>
+);
+ReactDOM.render(<ul>{listitems} </ul>,document.getElementById('root'))
+
+Same above example converted to JSX class component
+
+import React from 'react'
+function List1()
+{
+    const numbers = [1, 2, 3, 4, 5];
+   
+return (
+    <div>
+      {numbers.map((item, index) => (
+        <li value={item}>{item*(index+1)}</li>))}
+    </div>
+  );
+}
+export default List1;
+
+
+
+Demo2:
+import React from 'react'
+function List1(props)
+{
+    const numbers = [1, 2, 3, 4, 5];
+  console.log(props.items)
+  return (     
+    <div>
+      {
+      props.items.map((item, index) => (
+        <li value={item}>{item*(index+1)}</li>))}
+     
+    </div>);
+
+}
+export default List1;
+
+index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+import List1 from './listdemo/List1'
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map((number) => number * 2);
+
+const listitems= numbers.map(  
+  (numbers)=><li>{numbers*2}</li>
+  );
+ReactDOM.render(
+<List1 items={numbers}/>,
+  document.getElementById('root')
+);
+
+
+example 2: for keys
+This example  create Content elements with unique index (i).
+ The map function will create three elements from our data array.
+ Since the key value needs to be unique for every element, we will assign i as a key for each created element.
+
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+class App extends React.Component {
+  constructor(props) {
+     super();
+   this.show=this.show.bind(this);
+     this.state = {
+        data:[
+           {
+              component: 'First...',
+              id: 1
+           },
+           {
+              component: 'Second...',
+              id: 2
+           },
+           {
+              component: 'Third...',
+              id: 3
+           }
+        ]
+     }
+  }
+  show()
+  {
+this.state.data.push({
+   component: 'New Item '||this.props.inc,
+  
+
+})
+this.setState(
+   this.state
+ )
+  }
+  render() {
+   console.log(this.state.data)
+     return (
+   
+        <div>
+            
+            
+           <div>           
+              {
+              this.state.data.map((dynamicComponent, i) => <Content 
+                 key = {i} componentData = {dynamicComponent} val={i+1}/>)}
+           </div>
+           <button onClick={this.show}>Click</button>
+        </div>
+     );
+  }
+}
+
+
+
+class Content extends React.Component {
+  render() {
+     return (
+        <div>
+           <div>{this.props.componentData.component}</div>
+           <div>{this.props.val}</div>
+        </div>
+     );
+  }
+}
+
+export default App;
+
+
+index.js
+ReactDOM.render(
+//<List1 items={numbers}/>,  document.getElementById('root')
+<App />,  document.getElementById('root')
+);
+
+----------------------------------------
+Demo 3:
+
+
+class App extends React.Component {
+   constructor() {
+      super();		
+      this.state = {
+         data:[
+            {
+               component: 'First...',
+               id: 10
+            },
+            {
+               component: 'Second...',
+               id: 20
+            },
+            {
+               component: 'Third...',
+               id: 30
+            }
+         ]
+      }
+   }
+   render() {
+      return (
+         <div>
+            <div>
+               {this.state.data.map((dynamicComponent, i) => <Content 
+                  key = {i} componentData = {dynamicComponent}/>)}
+            </div>
+         </div>
+      );
+   }
+}
+class Content extends React.Component {
+   render() {
+      return (
+         <div>
+            <div>{this.props.componentData.component}</div>
+            <div>{this.props.componentData.id}</div>
+         </div>
+      );
+   }
+}
+ReactDOM.render(<App/>, document.getElementById('root'));
+-------------------------------------------------
+pushing items to an array
+
+class ChildA extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: ['a', 'b' , 'c', 'd', 'e'],
+      textvalue : "",
+      test:""
+    }
+    this.handleAddTodoItem = this.handleAddTodoItem.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handledelTodoItem = this.handledelTodoItem.bind(this)
+  }
+  handleChange(e) {
+    this.setState({
+      textvalue:e.target.value
+    })
+  }
+  handleAddTodoItem() {   
+ this.state.value.push(this.state.textvalue)
+    this.setState(
+      this.state
+    )
+   
+  }
+  handledelTodoItem(v){
+    for(var i = 0; i < this.state.value.length; i++){
+      if(this.state.value[i] == v){
+         delete this.state.value[i]
+      }
+    }
+    this.setState({
+      value:this.state.value
+    })
+    console.log(this.state.value)
+  }
+  render() {
+    let { value } = this.state;
+    return (
+      <div>
+        <input type="text" placeholder="????" className="text" onChange={ this.handleChange } />
+        <button className="addbutton" onClick={this.handleAddTodoItem}>Add Todo Item</button>
+        {value.map((v) => {
+          return <div><h1 className="font"><button className="allbutton" onClick={this.handledelTodoItem.bind(this, v)}>DelTodoItem</button>{v}</h1></div>         
+        })}
+      </div>
+    )
+  }
+}
+class Container extends React.Component {
+  render() {
+    return (
+      <ChildA  /> 
+    )
+  }
+}
+
+ReactDOM.render(<ChildA />, document.getElementById('app'));
+---------------------------------------
+Forms
+
+https://reactjs.org/docs/forms.html
+
+import React,{Component} from 'react'
+class Demo1 extends Component{
+    constructor(props)
+    {
+
+    
+    super(props);
+    this.state = {
+      value: ''}
+  //fruit:''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value,
+    //  fruit:event.target.fruit
+    });
+    console.log(this.state)
+  }
+
+  handleSubmit(event) {
+   // this.setState({value: event.target.value});
+    alert('A name was submitted: ' + this.state.value);
+   // alert('Your favorite flavor is: ' + this.state.fruit);
+   event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+
+       {/* <label>
+          Pick your favorite flavor:
+          <select value={this.state.fruit} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label> */}
+
+
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+} 
+export default Demo1;
+
+
+Demo 2:
+Multiple element
+import React,{Component} from 'react'
+class Demo2 extends Component{
+  
+    constructor(props)
+    {    
+    super(props);
+    this.state = {
+      fname: '',
+  fruit:''};
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleInputChange(event) {
+    const name = event.target.name
+    console.log(name)
+    const value1 = event.target.value;
+       console.log(value1)
+ 
+    this.setState(
+      {
+        [name]:value1
+      }
+     
+    );
+  }
+
+  handleSubmit(event) {
+   // this.setState({value: event.target.value});
+    alert('A name was submitted: ' + this.state.fname);
+    alert('Your favorite flavor is: ' + this.state.fruit);
+   event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} name ="fname" 
+          value={this.state.value}
+          onChange={this.handleInputChange} />
+        </label>
+
+     <label>
+          Pick your favorite flavor:
+          <select value={this.state.fruit} name="fruit" value={this.state.fruit} 
+          onChange={this.handleInputChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label> 
+
+
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+} 
+export default Demo2;
+
+
+https://www.pluralsight.com/guides/handling-multiple-inputs-with-single-onchange-handler-react
+https://medium.com/@agoiabeladeyemi/the-complete-guide-to-forms-in-react-d2ba93f32825
